@@ -1,80 +1,175 @@
-//LINK COMPLETO
-//https://api.edamam.com/api/recipes/v2?type=public&app_id=46827f8a&app_key=d3c95ee2c2fd114cce90e759e28e3c44&ingr=2%2B&diet=balanced&health=alcohol-cocktail&cuisineType=Asian&mealType=Dinner&dishType=Bread&calories=200-300&time=10&excluded=banana&random=true&co2EmissionsClass=A
-//const quantityIng = document.getElementById("quantity-ing").value;
-
-const appId = '46827f8a';
-const appKey = 'd3c95ee2c2fd114cce90e759e28e3c44';
-
-
+//Variable del formulario
 const searchForm = document.querySelector('form');
 
 //VARIABLES DE CONTAINERS DE HTML
 
 const recipesContainer = document.getElementById('recipes-container');
 const recipeDetails = document.getElementById('recipe-details');
+//let query_ = '';
+searchForm.addEventListener('submit', 
+async function getRecipes(recipes)
+{    
+    recipes.preventDefault();
+    
+    const healthType = document.getElementById("health-type").value;
+    const cuisineType = document.getElementById('cuisine-type').value;   
 
-let query_ = '';
+    console.log(healthType);
+    console.log(cuisineType);
+    
+    document.getElementById('recipes-search-form').reset();
+    recipesContainer.innerHTML = '';
+    
+    if(healthType === '')
+    {
+        alert('Insert');
+        return;
+    }   
+    
+    const apiUrl = `https://api.edamam.com/api/recipes/v2?type=public&app_id=46827f8a&app_key=d3c95ee2c2fd114cce90e759e28e3c44&health=${healthType}&cuisineType=${cuisineType}`;
+    
 
 
-searchForm.addEventListener('submit', (e) =>
-{
-    e.preventDefault();
-    query_ = e.target.querySelector('input').value;
-    fetchAPI();
+//    https://api.edamam.com/api/recipes/v2?type=public&app_id=46827f8a&app_key=d3c95ee2c2fd114cce90e759e28e3c44&health=vegan&cuisineType=chinese
+console.log(apiUrl);    
+    
+try
+    {
+        const response = await fetch(apiUrl);
+
+        if(!response.ok)
+        {
+            throw new Error('Error gordo');
+        }
+     
+        const data = await response.json();
+        console.log(data);
+        if(data.Error)
+        {
+            throw new Error(data.Error);
+        }
+        
+        //const results = data['Search'];
+
+   /*      results.map((result)=>
+        {
+            console.log(result);
+            //renderRecipe(result);
+        }
+        )   */
+    }
+ catch (error) {
+     console.error('Error:', error);
+    }
 });
 
-
-async function fetchAPI() 
-{
-    const baseUrl = `https://api.edamam.com/search?app_id=${appId}&app_key=${appKey}&q=${query_}&diet=balanced&health=vegan&cuisineType=italian`;
-    const response = await fetch(baseUrl); 
-    const data = await response.json();
-    console.log(data);
-}
+//getRecipes();
 
 
 
-//prevent default para no generar un article cada vez que submit
-//recipesData.preventDefault();
-     
-//const dietType = document.getElementById("diet-type").value;
-//const healthType = document.getElementById("health-type").value;
-//const cuisineType = document.getElementById('cuisine-type').value;
-//console.log(dietType);
-//console.log(healthType);
-//console.log(cuisineType);
 
-/* console.log(1);
-document.getElementById('recipes-search-form').reset();
-recipesContainer.innerHTML = '';
-console.log(2);
-if (dietType === "") {
-    //Utilizo esto por si quiero decir que metan algo en el form, pero si le doy al refrescar tambien me sale, solucionar el problema
-    alert('Insert diet type');
-}
 
-console.log(3); */
 
-    //const idKey = `?app_id=${appId}&app_key=${appKey}`;
+
+
+
+
+
+
+/* function renderRecipes(recipes) {
+    const recetasDiv = document.getElementById("recipe-details");
+    recetasDiv.innerHTML = "";
+
+    recipes.forEach(receta => {
+        const nombre = receta.recipe.label;
+        const imagen = receta.recipe.image;
+        //const enlace = `receta.html?nombre=${nombre}` // Enlace a la página de detalles
+
+        const recetaElement = document.createElement("article");
+        recetaElement.innerHTML = `
+            <h2>${nombre}</h2>
+         
+                <img src="${imagen}" alt="${nombre}">
+            </a>
+        `;
+
+        recipes.appendChild(recetaElement);
+    });
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    fetchAPI();
     
-    //const query = `$diet=${dietType}&health=${healthType}&cuisineType=${cuisineType}`;
-
+    async function fetchAPI() 
+    {
+        
+        
+    }
+    */
+   
+   
+   //prevent default para no generar un article cada vez que submit
+   //recipesData.preventDefault();
+   
+   //console.log(dietType);
+   //console.log(healthType);
+   //console.log(cuisineType);
+   
+   /* console.log(1);
+   document.getElementById('recipes-search-form').reset();
+   recipesContainer.innerHTML = '';
+   console.log(2);
+   if (dietType === "") {
+       //Utilizo esto por si quiero decir que metan algo en el form, pero si le doy al refrescar tambien me sale, solucionar el problema
+       alert('Insert diet type');
+    }
+    
+    console.log(3); */
+    
+    
     // &q=${query}`;
-
+    
     //const url = baseUrl + idKey + query;
 
-console.log(4);
+//console.log(4);
 
-    /*try {
-        //const response = await fetch(url);
-        
-          
-        
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+/*try {
+    //const response = await fetch(url);
+    
+    
+    const idKey = `?app_id=${appId}&app_key=${appKey}`;
+    
+    const query = `$diet=${dietType}&health=${healthType}&cuisineType=${cuisineType}`;
+    
+    
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
         }
-       
+        
         const data = await response.json();
 
       if (data.Error) {
