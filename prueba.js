@@ -273,6 +273,8 @@ ingredients.innerHTML += hit.recipe.ingredients;
     articleIngredients.className = 'article-ingredients';
     articleText.appendChild(articleIngredients);
     
+
+
     const healthLabels = document.createElement('p');
     const nodeHL = document.createTextNode('Health Labels: ')
     healthLabels.appendChild(nodeHL);
@@ -310,7 +312,26 @@ ingredients.innerHTML += hit.recipe.ingredients;
 
 return hit;
 }    
-         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          function addRemoveFavs(hit)
          {
             let favo = localStorage.getItem("favorites")
@@ -357,6 +378,12 @@ return hit;
             }
         }
             
+
+
+
+
+
+
     
       /*   function getLabel() {
             const label = JSON.parse(localStorage.getItem(label));

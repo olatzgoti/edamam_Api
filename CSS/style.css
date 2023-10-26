@@ -3,6 +3,7 @@
 
 *{
     box-sizing:border-box;
+    
 }
 
 
@@ -13,6 +14,7 @@ body{
     background-image: url('../assets/especias.jpg'); /* Reemplaza con la ruta de tu imagen */
     background-size:contain;
     max-width: 100%;
+
 }
 
 
@@ -112,6 +114,8 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
+
     
 }
 /* #titulo-header{
@@ -136,6 +140,7 @@ body{
     width: 40%;
     display: block;
     text-align: left;
+    align-items: safe;
 }
 
 .article-image
@@ -164,13 +169,14 @@ h1
 
 
 form
-{
+{   width:60%;
     display: flex;
     justify-content: space-around;
     align-items: center;
     background-color: rgb(186, 186, 179);
     padding: 15px;
     border-radius: 15px;
+
 margin-bottom: 26px;
 }
 
